@@ -1,6 +1,6 @@
 listaContactos = [] #Almacena todos los contactos 
-opcion = 0
-while(opcion !=6):
+
+while(True):
 
     print("AGENDA TELEFÓNICA CON PYTHON")
 
@@ -12,11 +12,11 @@ while(opcion !=6):
     print("5. Editar contacto")
     print("6. Salir")
 
-    opcion = int(input("Eliga la opción que deseas realizar: "))
+    opcion = input("Eliga la opción que deseas realizar: ")
 
 
     match opcion:
-        case 1:
+        case "1":
             print("Has elegido Agregar Contacto")
             nombre = input("Introduce el nombre de la persona: ")
             telefono = input("Introduce el telefono de la persona: ")
@@ -30,32 +30,85 @@ while(opcion !=6):
             #listaContactos.append(contacto)
             with open("contactos.txt", "a") as archivo:
                 archivo.write(contacto["nombre"] + "," + contacto["telefono"] + ","+ contacto["email"]+"\n")
-        case 2:
+        case "2":
             print("Has elegido Buscar un contacto")
             telefonoContacto = input("Ingrese un numero de telefono: ")
-            
+            encontrado = False
             with open("contactos.txt", "r", encoding='utf-8') as archivo:
                 for linea in archivo:
                     datos = linea.split(',')
                     if(datos[1] == telefonoContacto):
                         print("Encontrado!!!" + " corrresponde al contacto de" + datos[0])
-
-        case 3:
+                        encontrado = True
+            if(not encontrado):
+                print(f"El telefono {telefonoContacto} no existe en la base de contacto")
+        case "3":
             print("Has elegido Mostrar Contactos")
 
             with open("contactos.txt", "r", encoding='utf-8') as archivo:
                 for linea in archivo:
                     print(linea)
-        case 4:
-            print("Has elegido Buscar un contacto")
-            telefonoContacto = input("Ingrese un numero de telefono")
-            with open("contacto.txt", "r", encoding='utf-8') as archivo:
+        case "4":
+            print("Has elegido Eliminar un Contacto")
+            listaContactos.clear()
+            telefonoContacto = input("Introduce un numero de telefono para eliminar")
+            with open("contactos.txt", "r", encoding='utf-8') as archivo:
                 for linea in archivo:
                     datos = linea.split(',')
-                    print(datos)  
-        case 5:
-            print("Has elegido opcion 5")
-        case 6:
+                    if(telefonoContacto != datos[1]):
+                        contacto = {
+                            "nombre": datos[0],
+                            "telefono": datos[1],
+                            "email" : datos[2]
+                        }
+                        listaContactos.append(contacto)
+            for contact in listaContactos:
+                print(contact)
+
+            respuesta = input("¿Deseas realmente eliminar este contacto (S=Si \ N=No)")
+            if(respuesta == "S" or respuesta == "s"):
+                texto = ""
+                for contacto in listaContactos:
+                    texto = texto + contacto["nombre"] + "," + contacto["telefono"] + ","+ contacto["email"]
+                with open("contactos.txt", "w", encoding='utf-8') as archivo:
+                    archivo.write(texto)
+                        
+            else:
+                print("Cancelar operación")
+        case "5":
+            print("Has elegido Editar un Contacto")
+            listaContactos.clear()
+            telefonoContacto = input("Introduce un numero de telefono para editar")
+            with open("contactos.txt", "r", encoding='utf-8') as archivo:
+                for linea in archivo:
+                    datos = linea.split(',')
+                    if(telefonoContacto != datos[1]):
+                        contacto = {
+                            "nombre": datos[0],
+                            "telefono": datos[1],
+                            "email" : datos[2]
+                        }
+                        listaContactos.append(contacto)
+                    else:
+                        nombre=input("Introduce un nuevo nombre para el contacto")
+                        telefono=input("Introduce un nuevo telefono para el contacto")
+                        email = input("Introduce el nuevo correo para el contacto")
+
+                        contacto = {
+                                    "nombre": nombre,
+                                    "telefono": telefono,
+                                    "email" : email+"\n"
+                                }
+                        listaContactos.append(contacto)
+
+            texto = ""
+            for contacto in listaContactos:
+                texto = texto + contacto["nombre"] + "," + contacto["telefono"] + ","+ contacto["email"]
+            with open("contactos.txt", "w", encoding='utf-8') as archivo:
+                archivo.write(texto)
+
+        case "6":
             print("Has elegido Salir del Programa")
+            break
 
 print("El programa se terminó")
