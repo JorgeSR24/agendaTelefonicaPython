@@ -33,7 +33,11 @@ while(opcion !=6):
         case 2:
             print("Has elegido opcion 2")
         case 3:
-            print("Has elegido opcion 3")
+            print("Has elegido Mostrar Contactos")
+
+            with open("contactos.txt", "r", encoding='utf-8') as archivo:
+                for linea in archivo:
+                    print(linea)
         case 4:
             print("Has elegido opcion 4")
         case 5:

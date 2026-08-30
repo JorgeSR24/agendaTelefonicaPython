@@ -1,1 +1,3 @@
 Nombre contacto: Jorge, Telefono contacto: 8282828, Email contactojorge@gmail
+Nombre contacto: Pedro, Telefono contacto: 8383883, Email contacto: pedro
+Nombre contacto: Rafael, Telefono contacto: 323232, Email contacto: rafa@gmail.com
