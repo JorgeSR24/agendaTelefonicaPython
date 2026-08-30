@@ -29,9 +29,17 @@ while(opcion !=6):
             }
             #listaContactos.append(contacto)
             with open("contactos.txt", "a") as archivo:
-                archivo.write("Nombre contacto: " + contacto["nombre"] + ", Telefono contacto: " + contacto["telefono"] + ", Email contacto: " + contacto["email"]+"\n")
+                archivo.write(contacto["nombre"] + "," + contacto["telefono"] + ","+ contacto["email"]+"\n")
         case 2:
-            print("Has elegido opcion 2")
+            print("Has elegido Buscar un contacto")
+            telefonoContacto = input("Ingrese un numero de telefono: ")
+            
+            with open("contactos.txt", "r", encoding='utf-8') as archivo:
+                for linea in archivo:
+                    datos = linea.split(',')
+                    if(datos[1] == telefonoContacto):
+                        print("Encontrado!!!" + " corrresponde al contacto de" + datos[0])
+
         case 3:
             print("Has elegido Mostrar Contactos")
 
@@ -39,7 +47,12 @@ while(opcion !=6):
                 for linea in archivo:
                     print(linea)
         case 4:
-            print("Has elegido opcion 4")
+            print("Has elegido Buscar un contacto")
+            telefonoContacto = input("Ingrese un numero de telefono")
+            with open("contacto.txt", "r", encoding='utf-8') as archivo:
+                for linea in archivo:
+                    datos = linea.split(',')
+                    print(datos)  
         case 5:
             print("Has elegido opcion 5")
         case 6:
