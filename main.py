@@ -1,4 +1,4 @@
-
+listaContactos = [] #Almacena todos los contactos 
 opcion = 0
 while(opcion !=6):
 
@@ -17,7 +17,19 @@ while(opcion !=6):
 
     match opcion:
         case 1:
-            print("Has elegido opcion 1")
+            print("Has elegido Agregar Contacto")
+            nombre = input("Introduce el nombre de la persona: ")
+            telefono = input("Introduce el telefono de la persona: ")
+            email = input("Introduce el correo electronico de la persona: ")
+
+            contacto = {
+                "nombre":nombre,
+                "telefono":telefono,
+                "email":email
+            }
+            #listaContactos.append(contacto)
+            with open("contactos.txt", "a") as archivo:
+                archivo.write("Nombre contacto: " + contacto["nombre"] + ", Telefono contacto: " + contacto["telefono"] + ", Email contacto: " + contacto["email"]+"\n")
         case 2:
             print("Has elegido opcion 2")
         case 3:
