@@ -1,3 +1,6 @@
+import os
+CARPETA = 'contactos/'
+
 def mostrarMenu():
     print("AGENDA TELEFÓNICA CON PYTHON")
     
@@ -8,3 +11,7 @@ def mostrarMenu():
     print("4. Eliminar contacto")
     print("5. Editar contacto")
     print("6. Salir")
+
+def crearDirectorio():
+    if(not os.path.exists(CARPETA)):
+        os.makedirs(CARPETA)

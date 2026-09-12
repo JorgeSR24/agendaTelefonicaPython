@@ -1,5 +1,8 @@
 import funciones as fn
+
+CARPETA = '/contactos'
 listaContactos = [] #Almacena todos los contactos 
+fn.crearDirectorio()
 
 while(True):
     fn.mostrarMenu()
@@ -19,7 +22,7 @@ while(True):
                 "email":email
             }
             #listaContactos.append(contacto)
-            with open("contactos.txt", "a") as archivo:
+            with open(CARPETA+"contactos.txt", "a") as archivo:
                 archivo.write(contacto["nombre"] + "," + contacto["telefono"] + ","+ contacto["email"]+"\n")
         case "2":
             print("Has elegido Buscar un contacto")
