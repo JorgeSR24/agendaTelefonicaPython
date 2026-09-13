@@ -1,4 +1,5 @@
 import funciones as fn
+from Contacto import Contacto
 
 CARPETA = '/contactos'
 listaContactos = [] #Almacena todos los contactos 
@@ -21,9 +22,13 @@ while(True):
                 "telefono":telefono,
                 "email":email
             }
+
+            contacto = Contacto(nombre, telefono, email)
             #listaContactos.append(contacto)
-            with open(CARPETA+"contactos.txt", "a") as archivo:
-                archivo.write(contacto["nombre"] + "," + contacto["telefono"] + ","+ contacto["email"]+"\n")
+            with open("contactos.txt", "a") as archivo:
+                # archivo.write(contacto["nombre"] + "," + contacto["telefono"] + ","+ contacto["email"]+"\n")
+                archivo.write(contacto.getNombre() + "," + contacto.getTelefono() + ","+ contacto.getEmail()+"\n")
+                
         case "2":
             print("Has elegido Buscar un contacto")
             telefonoContacto = input("Ingrese un numero de telefono: ")
